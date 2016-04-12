@@ -22,3 +22,10 @@
 #undef Z_MIN_PROBE_PIN
 #define Z_MIN_PROBE_PIN        6
 #endif
+ 
+#ifdef REPRAP_DISCOUNT_SMART_CONTROLLER
+#undef BTN_EN1
+#undef BTN_EN2
+#define BTN_EN1 33
+#define BTN_EN2 31
+#endif
