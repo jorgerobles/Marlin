@@ -97,7 +97,7 @@
 
 // This determines the communication speed of the printer
 // :[2400,9600,19200,38400,57600,115200,250000]
-#define BAUDRATE 250000
+#define BAUDRATE 115200
 
 // Enable the Bluetooth serial interface on AT90USB devices
 //#define BLUETOOTH
@@ -105,12 +105,12 @@
 // The following define selects which electronics board you have.
 // Please choose the name from boards.h that matches your setup
 #ifndef MOTHERBOARD
-  #define MOTHERBOARD BOARD_RAMPS_14_EFB
+  #define MOTHERBOARD BOARD_MKS_BASE
 #endif
 
 // Optional custom name for your RepStrap or other custom machine
 // Displayed in the LCD "Ready" message
-//#define CUSTOM_MACHINE_NAME "3D Printer"
+#define CUSTOM_MACHINE_NAME "SAVTOTUM"
 
 // Define this to set a unique identifier for this printer, (Used by some programs to differentiate between machines)
 // You can use an online service to generate a random UUID. (eg http://www.uuidgenerator.net/version4)
@@ -242,9 +242,9 @@
 
   // If you are using a pre-configured hotend then you can use one of the value sets by uncommenting it
   // Ultimaker
-  #define  DEFAULT_Kp 22.2
-  #define  DEFAULT_Ki 1.08
-  #define  DEFAULT_Kd 114
+  // #define  DEFAULT_Kp 22.2
+  // #define  DEFAULT_Ki 1.08
+  // #define  DEFAULT_Kd 114
 
   // MakerGear
   //#define  DEFAULT_Kp 7.0
@@ -255,6 +255,11 @@
   //#define  DEFAULT_Kp 63.0
   //#define  DEFAULT_Ki 2.25
   //#define  DEFAULT_Kd 440
+ 
+   //XY PRINTHATSHIT
+	#define  DEFAULT_Kp 21.38
+	#define  DEFAULT_Ki 1.09
+	#define  DEFAULT_Kd 104.58
 
 #endif // PIDTEMP
 
@@ -338,7 +343,7 @@
 // @section machine
 
 // Uncomment this option to enable CoreXY kinematics
-//#define COREXY
+#define COREXY
 
 // Uncomment this option to enable CoreXZ kinematics
 //#define COREXZ
@@ -363,13 +368,13 @@
 #endif
 
 // Mechanical endstop with COM to ground and NC to Signal uses "false" here (most common setup).
-const bool X_MIN_ENDSTOP_INVERTING = false; // set to true to invert the logic of the endstop.
-const bool Y_MIN_ENDSTOP_INVERTING = false; // set to true to invert the logic of the endstop.
-const bool Z_MIN_ENDSTOP_INVERTING = false; // set to true to invert the logic of the endstop.
-const bool X_MAX_ENDSTOP_INVERTING = false; // set to true to invert the logic of the endstop.
-const bool Y_MAX_ENDSTOP_INVERTING = false; // set to true to invert the logic of the endstop.
-const bool Z_MAX_ENDSTOP_INVERTING = false; // set to true to invert the logic of the endstop.
-const bool Z_MIN_PROBE_ENDSTOP_INVERTING = false; // set to true to invert the logic of the endstop.
+const bool X_MIN_ENDSTOP_INVERTING = true; // set to true to invert the logic of the endstop.
+const bool Y_MIN_ENDSTOP_INVERTING = true; // set to true to invert the logic of the endstop.
+const bool Z_MIN_ENDSTOP_INVERTING = true; // set to true to invert the logic of the endstop.
+const bool X_MAX_ENDSTOP_INVERTING = true; // set to true to invert the logic of the endstop.
+const bool Y_MAX_ENDSTOP_INVERTING = true; // set to true to invert the logic of the endstop.
+const bool Z_MAX_ENDSTOP_INVERTING = true; // set to true to invert the logic of the endstop.
+const bool Z_MIN_PROBE_ENDSTOP_INVERTING = true; // set to true to invert the logic of the endstop.
 //#define DISABLE_MAX_ENDSTOPS
 //#define DISABLE_MIN_ENDSTOPS
 
@@ -407,11 +412,11 @@ const bool Z_MIN_PROBE_ENDSTOP_INVERTING = false; // set to true to invert the l
 // Setting the wrong pin may have unexpected and potentially disastrous consequences.
 // Use with caution and do your homework.
 //
-//#define Z_MIN_PROBE_ENDSTOP
+#define Z_MIN_PROBE_ENDSTOP
 
 // Enable Z_MIN_PROBE_USES_Z_MIN_ENDSTOP_PIN to use the Z_MIN_PIN for your Z_MIN_PROBE.
 // The Z_MIN_PIN will then be used for both Z-homing and probing.
-#define Z_MIN_PROBE_USES_Z_MIN_ENDSTOP_PIN
+//#define Z_MIN_PROBE_USES_Z_MIN_ENDSTOP_PIN
 
 // To use a probe you must enable one of the two options above!
 
@@ -444,9 +449,9 @@ const bool Z_MIN_PROBE_ENDSTOP_INVERTING = false; // set to true to invert the l
 // @section machine
 
 // Invert the stepper direction. Change (or reverse the motor connector) if an axis goes the wrong way.
-#define INVERT_X_DIR false
+#define INVERT_X_DIR false 
 #define INVERT_Y_DIR true
-#define INVERT_Z_DIR false
+#define INVERT_Z_DIR true
 
 // @section extruder
 
@@ -464,7 +469,7 @@ const bool Z_MIN_PROBE_ENDSTOP_INVERTING = false; // set to true to invert the l
 // Sets direction of endstops when homing; 1=MAX, -1=MIN
 // :[-1,1]
 #define X_HOME_DIR -1
-#define Y_HOME_DIR -1
+#define Y_HOME_DIR 1
 #define Z_HOME_DIR -1
 
 #define min_software_endstops true // If true, axis won't move to coordinates less than HOME_POS.
@@ -476,8 +481,8 @@ const bool Z_MIN_PROBE_ENDSTOP_INVERTING = false; // set to true to invert the l
 #define X_MIN_POS 0
 #define Y_MIN_POS 0
 #define Z_MIN_POS 0
-#define X_MAX_POS 200
-#define Y_MAX_POS 200
+#define X_MAX_POS 290
+#define Y_MAX_POS 225
 #define Z_MAX_POS 200
 
 //===========================================================================
@@ -497,7 +502,13 @@ const bool Z_MIN_PROBE_ENDSTOP_INVERTING = false; // set to true to invert the l
 //============================ Mesh Bed Leveling ============================
 //===========================================================================
 
-//#define MESH_BED_LEVELING    // Enable mesh bed leveling.
+#define MESH_BED_LEVELING    // Enable mesh bed leveling.
+  
+  
+//  [x10,y10] -> 2.50000  3.00000  2.60000 
+//     2.50000  3.05000  2.65000 <-
+//  -> 2.70000  3.05000  2.50000 [x10,y225]
+  
 
 #if ENABLED(MESH_BED_LEVELING)
   #define MESH_MIN_X 10
@@ -508,7 +519,7 @@ const bool Z_MIN_PROBE_ENDSTOP_INVERTING = false; // set to true to invert the l
   #define MESH_NUM_Y_POINTS 3
   #define MESH_HOME_SEARCH_Z 4  // Z after Home, bed somewhere below but above 0.0.
 
-  //#define MANUAL_BED_LEVELING  // Add display menu option for bed leveling.
+  #define MANUAL_BED_LEVELING  // Add display menu option for bed leveling.
 
   #if ENABLED(MANUAL_BED_LEVELING)
     #define MBL_Z_STEP 0.025  // Step size while manually probing Z axis.
@@ -545,16 +556,16 @@ const bool Z_MIN_PROBE_ENDSTOP_INVERTING = false; // set to true to invert the l
 
   #if ENABLED(AUTO_BED_LEVELING_GRID)
 
-    #define LEFT_PROBE_BED_POSITION 15
-    #define RIGHT_PROBE_BED_POSITION 170
-    #define FRONT_PROBE_BED_POSITION 20
-    #define BACK_PROBE_BED_POSITION 170
+#define LEFT_PROBE_BED_POSITION 20
+    #define RIGHT_PROBE_BED_POSITION 250
+    #define BACK_PROBE_BED_POSITION 220
+    #define FRONT_PROBE_BED_POSITION 50
 
     #define MIN_PROBE_EDGE 10 // The Z probe minimum square sides can be no smaller than this.
 
     // Set the number of grid points per dimension.
     // You probably don't need more than 3 (squared=9).
-    #define AUTO_BED_LEVELING_GRID_POINTS 2
+    #define AUTO_BED_LEVELING_GRID_POINTS 3
 
   #else  // !AUTO_BED_LEVELING_GRID
 
@@ -586,9 +597,9 @@ const bool Z_MIN_PROBE_ENDSTOP_INVERTING = false; // set to true to invert the l
   //    |           |
   //    O-- FRONT --+
   //  (0,0)
-  #define X_PROBE_OFFSET_FROM_EXTRUDER 10  // X offset: -left  [of the nozzle] +right
-  #define Y_PROBE_OFFSET_FROM_EXTRUDER 10  // Y offset: -front [of the nozzle] +behind
-  #define Z_PROBE_OFFSET_FROM_EXTRUDER 0   // Z offset: -below [the nozzle] (always negative!)
+  #define X_PROBE_OFFSET_FROM_EXTRUDER 0     // Z probe to nozzle X offset: -left  +right
+  #define Y_PROBE_OFFSET_FROM_EXTRUDER 50     // Z probe to nozzle Y offset: -front +behind
+  #define Z_PROBE_OFFSET_FROM_EXTRUDER -2.20  // Z probe to nozzle Z offset: -below (always!)
 
   #define XY_TRAVEL_SPEED 8000         // X and Y axis travel speed between probes, in mm/min.
 
@@ -617,7 +628,7 @@ const bool Z_MIN_PROBE_ENDSTOP_INVERTING = false; // set to true to invert the l
   // If you've enabled AUTO_BED_LEVELING_FEATURE and are using the Z Probe for Z Homing,
   // it is highly recommended you leave Z_SAFE_HOMING enabled!
 
-  #define Z_SAFE_HOMING   // Use the z-min-probe for homing to z-min - not the z-min-endstop.
+  //#define Z_SAFE_HOMING   // Use the z-min-probe for homing to z-min - not the z-min-endstop.
                           // This feature is meant to avoid Z homing with Z probe outside the bed area.
                           // When defined, it will:
                           // - Allow Z homing only after X and Y homing AND stepper drivers still enabled.
@@ -660,16 +671,16 @@ const bool Z_MIN_PROBE_ENDSTOP_INVERTING = false; // set to true to invert the l
 
 // default settings
 
-#define DEFAULT_AXIS_STEPS_PER_UNIT   {80,80,4000,500}  // default steps per unit for Ultimaker
-#define DEFAULT_MAX_FEEDRATE          {300, 300, 5, 25}    // (mm/sec)
-#define DEFAULT_MAX_ACCELERATION      {3000,3000,100,10000}    // X, Y, Z, E maximum start speed for accelerated moves. E default values are good for Skeinforge 40+, for older versions raise them a lot.
+#define DEFAULT_AXIS_STEPS_PER_UNIT   {80, 80, 2133.34,  194.54}   // default steps per unit for Ultimaker
+#define DEFAULT_MAX_FEEDRATE          {330, 330, 10, 45}    // (mm/sec)
+#define DEFAULT_MAX_ACCELERATION      {800 ,800,100,3000}    // X, Y, Z, E maximum start speed for accelerated moves. E default values are good for Skeinforge 40+, for older versions raise them a lot.
 
-#define DEFAULT_ACCELERATION          3000    // X, Y, Z and E acceleration in mm/s^2 for printing moves
-#define DEFAULT_RETRACT_ACCELERATION  3000    // E acceleration in mm/s^2 for retracts
+#define DEFAULT_ACCELERATION          800    // X, Y, Z and E acceleration in mm/s^2 for printing moves
+#define DEFAULT_RETRACT_ACCELERATION  800    // E acceleration in mm/s^2 for retracts
 #define DEFAULT_TRAVEL_ACCELERATION   3000    // X, Y, Z acceleration in mm/s^2 for travel (non printing) moves
 
 // The speed change that does not require acceleration (i.e. the software might assume it can be done instantaneously)
-#define DEFAULT_XYJERK                20.0    // (mm/sec)
+#define DEFAULT_XYJERK                15.0    // (mm/sec)
 #define DEFAULT_ZJERK                 0.4     // (mm/sec)
 #define DEFAULT_EJERK                 5.0    // (mm/sec)
 
@@ -698,7 +709,7 @@ const bool Z_MIN_PROBE_ENDSTOP_INVERTING = false; // set to true to invert the l
 // M501 - reads parameters from EEPROM (if you need reset them after you changed them temporarily).
 // M502 - reverts to the default "factory settings".  You still need to store them in EEPROM afterwards if you want to.
 //define this to enable EEPROM support
-//#define EEPROM_SETTINGS
+#define EEPROM_SETTINGS
 
 #if ENABLED(EEPROM_SETTINGS)
   // To disable EEPROM Serial responses and decrease program space by ~1700 byte: comment this out:
@@ -746,7 +757,7 @@ const bool Z_MIN_PROBE_ENDSTOP_INVERTING = false; // set to true to invert the l
 
 //#define ULTRA_LCD  //general LCD support, also 16x2
 //#define DOGLCD  // Support for SPI LCD 128x64 (Controller ST7565R graphic Display Family)
-//#define SDSUPPORT // Enable SD Card Support in Hardware Console
+ #define SDSUPPORT // Enable SD Card Support in Hardware Console
                     // Changed behaviour! If you need SDSUPPORT uncomment it!
 //#define SPI_SPEED SPI_HALF_SPEED // (also SPI_QUARTER_SPEED, SPI_EIGHTH_SPEED) Use slower SD transfer mode (not normally needed - uncomment if you're getting volume init error)
 //#define SD_CHECK_AND_RETRY // Use CRC checks and retries on the SD communication
@@ -791,7 +802,7 @@ const bool Z_MIN_PROBE_ENDSTOP_INVERTING = false; // set to true to invert the l
 // http://reprap.org/wiki/RepRapDiscount_Full_Graphic_Smart_Controller
 //
 // ==> REMEMBER TO INSTALL U8glib to your ARDUINO library folder: https://github.com/olikraus/U8glib_Arduino
-//#define REPRAP_DISCOUNT_FULL_GRAPHIC_SMART_CONTROLLER
+ #define REPRAP_DISCOUNT_FULL_GRAPHIC_SMART_CONTROLLER
 
 // The RepRapWorld REPRAPWORLD_KEYPAD v1.1
 // http://reprapworld.com/?products_details&products_id=202&cPath=1591_1626
