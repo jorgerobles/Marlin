@@ -1086,10 +1086,26 @@ void st_synchronize() { while (blocks_queued()) idle(); }
 
 void st_set_position(const long& x, const long& y, const long& z, const long& e) {
   CRITICAL_SECTION_START;
-  count_position[X_AXIS] = x;
-  count_position[Y_AXIS] = y;
-  count_position[Z_AXIS] = z;
-  count_position[E_AXIS] = e;
+  
+   #if ENABLED(COREXY)
+    // corexy planning
+    // these equations follow the form of the dA and dB equations on http://www.corexy.com/theory.html
+    count_position[A_AXIS] = x + y;
+    count_position[B_AXIS] = x - y;
+    count_position[Z_AXIS] = z;
+  #elif ENABLED(COREXZ)
+    // corexz planning
+    count_position[A_AXIS] = x + z;
+    count_position[Y_AXIS] = y;
+    count_position[C_AXIS] = x - z;
+  #else
+    // default non-h-bot planning
+    count_position[X_AXIS] = x;
+    count_position[Y_AXIS] = y;
+    count_position[Z_AXIS] = z;
+  #endif
+
+  
   CRITICAL_SECTION_END;
 }
 
